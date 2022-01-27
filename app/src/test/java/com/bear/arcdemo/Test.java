@@ -1,46 +1,72 @@
 package com.bear.arcdemo;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.util.regex.Pattern;
 
 public class Test {
 
 
     @org.junit.Test
-   public void test() {
-        int ret = 4/3;
-        int ret3 = 15 / 8;
-
-
-
-        List<String> versions = new ArrayList<>();
-        versions.add("1.5");
-        versions.add("1.45.0");
-        versions.add("6");
-        versions.add("3.3.3.3.3.3");
-        versions.add("1.5.66.0.0");
-
-        List<String> result = sortVersions(versions);
-        int size = result.size();
+    public void test() {
+        String test = "!this  1-s b8d!";
+        String pattern = "[a-z]*([a-z]-[a-z])?[a-z]*[!,.]?";
+        String[] array = test.split(" ");
+        int count = 0;
+        for(String word :array){
+            if(!word.isEmpty()&& Pattern.matches(pattern,word)){
+                count++;
+            }
+        }
+        int ss = count;
 
     }
 
-    private List<String> sortVersions(List<String> versions) {
-        Collections.sort(versions, (x, y) -> {
-            String[] xArray = x.split("\\.");
-            String[] yArray = y.split("\\.");
-            int m = xArray.length;
-            int n = yArray.length;
-            for (int i = 0; i < Math.min(m, n); i++) {
-                if (!xArray[i].equals(yArray[i])) {
-                    return Integer.parseInt(xArray[i]) - Integer.parseInt(yArray[i]);
+    public int countValidWords(String sentence) {
+        int ret = 0;
+        String[] words = sentence.split(" ");
+        for(int i=0; i < words.length;i++){
+            String word = words[i];
+            //多个空格分割
+            if(word.isEmpty()){
+                continue;
+            }
+            if(markValid(word)){
+                ret ++;
+            }
+        }
+        return ret;
+    }
+
+    private boolean markValid(String word){
+        int count = 0;
+        int link =0;
+        for(int i =0; i< word.length();i++){
+            if(word.charAt(i)>='0'&& word.charAt(i) <='9'){
+                return false;
+            }
+            if(word.charAt(i) == '!' ||word.charAt(i) == '.'||word.charAt(i) == ','){
+                count++;
+                if(count > 1 || i != (word.length()-1)){
+                    return false;
                 }
             }
-            return m - n;
-        });
-        return versions;
+            if(word.charAt(i) == '-'){
+                link++;
+
+                if(word.length()< 3){
+                    return false;
+                }
+
+                if(link >1 || i==0 || i ==(word.length()-1)){
+                    return false;
+                }
+
+                if(!(word.charAt(i-1)>= 'a' && word.charAt(i-1) <='z' &&word.charAt(i+1)>= 'a' && word.charAt(i+1) <='z')){
+                    return false;
+                }
+
+            }
+        }
+        return true;
     }
 
 
