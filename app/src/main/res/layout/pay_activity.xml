@@ -7,7 +7,7 @@
 
         <variable
             name="payResult"
-            type="com.bear.arcdemo.bear.ui.PayForUser" />
+            type="com.bear.arcdemo.arc.ui.PayForUser" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
