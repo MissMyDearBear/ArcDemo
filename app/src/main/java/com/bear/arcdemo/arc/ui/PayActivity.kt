@@ -26,10 +26,13 @@ class PayActivity : AppCompatActivity() {
                 binding.payResult = it.success
             }
         )
+        binding.mBtn.text = "Action"
         binding.mBtn.setOnClickListener {
-            val array = arrayOf<Int>(1,4,7,90,2,34,55,664,2,34,5,67)
-            val result=viewModel.sort(array)
-            bearLog(result.toString())
+//            val array = arrayOf<Int>(1,4,7,90,2,34,55,664,2,34,5,67)
+//            val result=viewModel.sort(array)
+//            bearLog(result.toString())
+            viewModel.backTrace()
+            viewModel.subsets()
         }
 
     }
