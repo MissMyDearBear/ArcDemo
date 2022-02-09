@@ -11,7 +11,7 @@ import java.net.URL
 import java.util.*
 
 const val testUrl =
-    "http://uat-i0.hdslb.com/bfs/manga-static/cad5f1587043c31779288de2a91a31b3cdc7be88.jpg"
+    "testUrl"
 
 class PictureDownload private constructor() {
     val coreSize = 5
