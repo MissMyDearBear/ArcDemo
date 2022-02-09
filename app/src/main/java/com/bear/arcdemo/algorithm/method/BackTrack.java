@@ -3,6 +3,7 @@ package com.bear.arcdemo.algorithm.method;
 import static com.bear.arcdemo.LogKt.bearLog;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
@@ -74,7 +75,62 @@ public class BackTrack {
         bearLog(sb.toString());
     }
 
+    /**
+     * 78.子集
+     * 给你一个整数数组 nums ，数组中的元素 互不相同 。返回该数组所有可能的子集（幂集）。
+     * <p>
+     * 解集 不能 包含重复的子集。你可以按 任意顺序 返回解集。
+     *
+     * <p>
+     * 方法一： 循环将元素放到已生成的子集中
+     * 方法二： 回溯
+     * <p/>
+     */
+    public List<List<Integer>> subsets(int[] nums) {
+        List<List<Integer>> ret = new ArrayList<>();
+//        subsetsFunction1(ret,nums);
+        //枚举
+        for (int k = 0; k <= nums.length; k++) {
+            subsetsFunction2(k, 0, new ArrayList<>(), ret, nums);
+        }
+        return ret;
+    }
 
+    private void subsetsFunction1(List<List<Integer>> ret, int[] nums) {
+        ret.add(new ArrayList<>());
+        for (int i = 0; i < nums.length; i++) {
+            int size = ret.size();
+            for (int j = 0; j < size; j++) {
+                List<Integer> tem = new ArrayList<>();
+                tem.addAll(ret.get(j));
+                tem.add(nums[i]);
+                ret.add(tem);
+            }
+        }
+
+    }
+
+    /**
+     * 回溯
+     *
+     * @param k     子集长度
+     * @param start 元素起始位置
+     * @param ret
+     * @param nums
+     */
+    private void subsetsFunction2(int k, int start, List<Integer> subList, List<List<Integer>> ret, int[] nums) {
+        if (k == 0) {
+            ret.add(new ArrayList<>(subList));
+            return;
+        }
+
+        for (int i = start; i < nums.length; i++) {
+            subList.add(nums[i]);
+            subsetsFunction2(k - 1, i + 1, subList, ret, nums);
+            subList.remove(subList.size() - 1);
+        }
+
+    }
 
 
     /**
@@ -88,8 +144,34 @@ public class BackTrack {
      */
     public List<List<Integer>> subsetsWithDup(int[] nums) {
         List<List<Integer>> ret = new ArrayList<>();
+        Arrays.sort(nums);
+        subsetsWithDupFunction2(0, new ArrayList<>(), ret, nums);
         return ret;
 
     }
+
+    /**
+     * 回溯
+     *
+     * @param index 元素起始位置
+     * @param ret
+     * @param nums
+     */
+    private void subsetsWithDupFunction2(int index, List<Integer> subList, List<List<Integer>> ret, int[] nums) {
+        if (index == nums.length) {
+            ret.add(new ArrayList<>(subList));
+            return;
+        }
+        subList.add(nums[index]);
+        subsetsWithDupFunction2(index + 1, subList, ret, nums);
+        subList.remove(subList.size() - 1);
+
+        while (index<nums.length-1 && nums[index] == nums[index-1]){
+            index++;
+        }
+        subsetsWithDupFunction2(index + 1, subList, ret, nums);
+
+    }
+
 
 }

@@ -44,7 +44,13 @@ class PayViewModel(private val payRepository: PayRepository) : ViewModel() {
     fun subsets() {
         val input = intArrayOf(1, 2, 3)
         val backTrack = BackTrack()
-        backTrack.subsetsWithDup(input)
+
+        val input2 = intArrayOf(1, 2, 2)
+        val ret2 = backTrack.subsetsWithDup(input2)
+
+        val ret1 = backTrack.subsets(input)
+
+
     }
 
 }
