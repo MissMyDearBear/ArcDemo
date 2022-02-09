@@ -1,5 +1,7 @@
 package com.bear.arcdemo.arc.ui
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -9,8 +11,14 @@ import com.bear.arcdemo.algorithm.sort.Sort
 import com.bear.arcdemo.algorithm.sort.SortDynamicProxy
 import com.bear.arcdemo.arc.data.PayRepository
 import com.bear.arcdemo.arc.data.Result
+import com.bear.arcdemo.arc.data.bearLog
 import com.bear.arcdemo.arc.data.model.PayInfo
+import com.bear.arcdemo.showcode.PictureDownload
+import com.bear.arcdemo.showcode.testUrl
+import com.bear.arcdemo.source.multhread.ThreadAwait
 import kotlinx.coroutines.launch
+import java.util.concurrent.CountDownLatch
+import java.util.concurrent.TimeUnit
 
 class PayViewModel(private val payRepository: PayRepository) : ViewModel() {
 
@@ -49,7 +57,27 @@ class PayViewModel(private val payRepository: PayRepository) : ViewModel() {
         val ret2 = backTrack.subsetsWithDup(input2)
 
         val ret1 = backTrack.subsets(input)
+    }
 
+    fun mulThread() {
+        val sb = StringBuffer()
+        val ctl = CountDownLatch(10)
+        for (i in 0 until 10) {
+//            MulThread("thread_$i").start()
+            ThreadAwait(runnable = { sb.append(i).append("-") }, "thread_$i", ctl).start()
+        }
+        ctl.await(3, TimeUnit.SECONDS)
+        bearLog("sb--> <${sb}>")
+    }
+
+    @RequiresApi(Build.VERSION_CODES.N)
+    fun download() {
+        Thread({
+            PictureDownload.instance.download(
+                testUrl,
+                MyApplication.myApplication!!.applicationContext
+            )
+        }, "download-pic").start()
 
     }
 

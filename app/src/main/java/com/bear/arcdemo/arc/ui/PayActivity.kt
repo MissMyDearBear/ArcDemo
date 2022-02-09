@@ -31,8 +31,10 @@ class PayActivity : AppCompatActivity() {
 //            val array = arrayOf<Int>(1,4,7,90,2,34,55,664,2,34,5,67)
 //            val result=viewModel.sort(array)
 //            bearLog(result.toString())
-            viewModel.backTrace()
-            viewModel.subsets()
+//            viewModel.backTrace()
+//            viewModel.subsets()
+//            viewModel.mulThread()
+            viewModel.download()
         }
 
     }

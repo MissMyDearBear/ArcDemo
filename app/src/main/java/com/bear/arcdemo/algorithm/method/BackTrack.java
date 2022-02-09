@@ -166,7 +166,7 @@ public class BackTrack {
         subsetsWithDupFunction2(index + 1, subList, ret, nums);
         subList.remove(subList.size() - 1);
 
-        while (index<nums.length-1 && nums[index] == nums[index-1]){
+        while (index<nums.length-1 && nums[index] == nums[index+1]){
             index++;
         }
         subsetsWithDupFunction2(index + 1, subList, ret, nums);
