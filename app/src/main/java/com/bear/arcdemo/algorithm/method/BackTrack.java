@@ -166,12 +166,40 @@ public class BackTrack {
         subsetsWithDupFunction2(index + 1, subList, ret, nums);
         subList.remove(subList.size() - 1);
 
-        while (index<nums.length-1 && nums[index] == nums[index+1]){
+        while (index < nums.length - 1 && nums[index] == nums[index + 1]) {
             index++;
         }
         subsetsWithDupFunction2(index + 1, subList, ret, nums);
 
     }
 
+    /**
+     * 22. 括号生成
+     * 数字 n 代表生成括号的对数，请你设计一个函数，用于能够生成所有可能的并且 有效的 括号组合。
+     */
+    public List<String> generateParenthesis(int n) {
+        List<String> ret = new ArrayList();
+        dfs(ret, new StringBuilder(), 0, 0, n);
+        return ret;
+    }
+
+    private void dfs(List<String> ret, StringBuilder sb, int start, int close, int n) {
+        if (sb.length() == 2 * n) {
+            ret.add(sb.toString());
+            return;
+        }
+        //需要保证先添加左括号
+        if (start < n) {
+            sb.append("(");
+            dfs(ret, sb, start + 1, close, n);
+            sb.replace(sb.length() - 1, sb.length(), "");
+        }
+        //只有当左括号的数字大于右括号的时候才能添加右括号
+        if (start > close) {
+            sb.append(")");
+            dfs(ret, sb, start, close + 1, n);
+            sb.replace(sb.length() - 1, sb.length(), "");
+        }
+    }
 
 }

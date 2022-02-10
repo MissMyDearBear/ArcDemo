@@ -34,7 +34,8 @@ class PayActivity : AppCompatActivity() {
 //            viewModel.backTrace()
 //            viewModel.subsets()
 //            viewModel.mulThread()
-            viewModel.download()
+//            viewModel.download()
+            viewModel.fraction()
         }
 
     }

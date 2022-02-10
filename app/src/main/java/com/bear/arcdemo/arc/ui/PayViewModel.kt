@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.bear.arcdemo.algorithm.method.BackTrack
+import com.bear.arcdemo.algorithm.method.Fraction
 import com.bear.arcdemo.algorithm.sort.QuickSort
 import com.bear.arcdemo.algorithm.sort.Sort
 import com.bear.arcdemo.algorithm.sort.SortDynamicProxy
@@ -79,6 +80,10 @@ class PayViewModel(private val payRepository: PayRepository) : ViewModel() {
             )
         }, "download-pic").start()
 
+    }
+
+    fun fraction(){
+        Fraction().simplifiedFractions(3)
     }
 
 }
