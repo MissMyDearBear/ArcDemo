@@ -35,7 +35,8 @@ class PayActivity : AppCompatActivity() {
 //            viewModel.subsets()
 //            viewModel.mulThread()
 //            viewModel.download()
-            viewModel.fraction()
+//            viewModel.fraction()
+            viewModel.buyTicket()
         }
 
     }

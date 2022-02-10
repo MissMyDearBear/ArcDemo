@@ -15,6 +15,7 @@ import com.bear.arcdemo.arc.data.Result
 import com.bear.arcdemo.arc.data.bearLog
 import com.bear.arcdemo.arc.data.model.PayInfo
 import com.bear.arcdemo.showcode.PictureDownload
+import com.bear.arcdemo.showcode.TrainTicket
 import com.bear.arcdemo.showcode.testUrl
 import com.bear.arcdemo.source.multhread.ThreadAwait
 import kotlinx.coroutines.launch
@@ -84,6 +85,13 @@ class PayViewModel(private val payRepository: PayRepository) : ViewModel() {
 
     fun fraction(){
         Fraction().simplifiedFractions(3)
+    }
+
+    fun buyTicket(){
+       for(i in 0..100){
+           Thread({TrainTicket().sell()},"thread_$i").start()
+
+       }
     }
 
 }
