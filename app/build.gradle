@@ -19,10 +19,12 @@ android {
     buildTypes {
         debug {
             minifyEnabled false
+            buildConfigField "Integer","DOWNLOAD_MAX_COUNT","5"
         }
         release {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField "Integer","DOWNLOAD_MAX_COUNT","5"
         }
     }
     compileOptions {
