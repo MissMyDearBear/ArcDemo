@@ -75,7 +75,7 @@ class PayViewModel(private val payRepository: PayRepository) : ViewModel() {
         for (i in 0..15) {
             DownLoadManager.instance.addTask(
                 DownloadTask(
-                    "http://uat-i0.hdslb.com/bfs/manga-static/cad5f1587043c31779288de2a91a31b3cdc7be88.jpg",
+                    "https://hbimg.huabanimg.com/e7aed7a6b8cb9f561d212176fd2094742e006938124ca-1lFwAm_fw658/format/webp",
                     "pic${i}"
                 )
             )
