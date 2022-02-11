@@ -1,5 +1,6 @@
 package com.bear.arcdemo.arc.ui
 
+import android.os.Build
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -34,9 +35,11 @@ class PayActivity : AppCompatActivity() {
 //            viewModel.backTrace()
 //            viewModel.subsets()
 //            viewModel.mulThread()
-//            viewModel.download()
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                viewModel.download()
+            }
 //            viewModel.fraction()
-            viewModel.buyTicket()
+//            viewModel.buyTicket()
         }
 
     }

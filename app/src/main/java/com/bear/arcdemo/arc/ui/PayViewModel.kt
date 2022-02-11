@@ -14,9 +14,7 @@ import com.bear.arcdemo.arc.data.PayRepository
 import com.bear.arcdemo.arc.data.Result
 import com.bear.arcdemo.arc.data.bearLog
 import com.bear.arcdemo.arc.data.model.PayInfo
-import com.bear.arcdemo.showcode.PictureDownload
-import com.bear.arcdemo.showcode.TrainTicket
-import com.bear.arcdemo.showcode.testUrl
+import com.bear.arcdemo.showcode.*
 import com.bear.arcdemo.source.multhread.ThreadAwait
 import kotlinx.coroutines.launch
 import java.util.concurrent.CountDownLatch
@@ -74,24 +72,25 @@ class PayViewModel(private val payRepository: PayRepository) : ViewModel() {
 
     @RequiresApi(Build.VERSION_CODES.N)
     fun download() {
-        Thread({
-            PictureDownload.instance.download(
-                testUrl,
-                MyApplication.myApplication!!.applicationContext
+        for (i in 0..15) {
+            DownLoadManager.instance.addTask(
+                DownloadTask(
+                    "http://uat-i0.hdslb.com/bfs/manga-static/cad5f1587043c31779288de2a91a31b3cdc7be88.jpg",
+                    "pic${i}"
+                )
             )
-        }, "download-pic").start()
-
+        }
     }
 
-    fun fraction(){
+    fun fraction() {
         Fraction().simplifiedFractions(3)
     }
 
-    fun buyTicket(){
-       for(i in 0..100){
-           Thread({TrainTicket().sell()},"thread_$i").start()
+    fun buyTicket() {
+        for (i in 0..100) {
+            Thread({ TrainTicket().sell() }, "thread_$i").start()
 
-       }
+        }
     }
 
 }

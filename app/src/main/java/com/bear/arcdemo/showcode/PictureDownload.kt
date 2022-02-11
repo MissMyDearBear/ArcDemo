@@ -5,20 +5,16 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Build
 import androidx.annotation.RequiresApi
+import com.bear.arcdemo.bearLog
 import java.io.File
 import java.io.FileOutputStream
 import java.net.URL
 import java.util.*
 
-const val testUrl =
-    "testUrl"
-
 class PictureDownload private constructor() {
-    val coreSize = 5
-    val taskList = LinkedList<PictureTask>()
-
     @RequiresApi(Build.VERSION_CODES.N)
-    fun download(url: String, context: Context) {
+    fun download(url: String, name: String, context: Context) {
+        bearLog("download task <$name> running!!")
         val url = URL(url)
         val http = url.openConnection()
         http.apply {
@@ -37,8 +33,9 @@ class PictureDownload private constructor() {
             file.mkdir()
         }
 
-        val fOut = FileOutputStream(path + File.separator + "pic01.png")
+        val fOut = FileOutputStream(path + File.separator + "$name.png")
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fOut)
+        bearLog("download task <$name> save file success!!")
         fOut.flush()
         fOut.close()
 
@@ -51,8 +48,3 @@ class PictureDownload private constructor() {
     }
 
 }
-
-data class PictureTask(
-    val url: String,
-    val name: String
-)
