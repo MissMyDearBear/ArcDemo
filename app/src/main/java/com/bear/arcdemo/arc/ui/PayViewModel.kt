@@ -14,6 +14,7 @@ import com.bear.arcdemo.arc.data.PayRepository
 import com.bear.arcdemo.arc.data.Result
 import com.bear.arcdemo.arc.data.bearLog
 import com.bear.arcdemo.arc.data.model.PayInfo
+import com.bear.arcdemo.kot.KotOperation
 import com.bear.arcdemo.showcode.*
 import com.bear.arcdemo.source.multhread.ThreadAwait
 import kotlinx.coroutines.launch
@@ -72,13 +73,21 @@ class PayViewModel(private val payRepository: PayRepository) : ViewModel() {
 
     @RequiresApi(Build.VERSION_CODES.N)
     fun download() {
-        for (i in 0..15) {
-            DownLoadManager.instance.addTask(
-                DownloadTask(
-                    "https://hbimg.huabanimg.com/e7aed7a6b8cb9f561d212176fd2094742e006938124ca-1lFwAm_fw658/format/webp",
-                    "pic${i}"
-                )
+//        for (i in 0..15) {
+//            DownLoadManager.instance.addTask(
+//                DownloadTask(
+//                    "https://hbimg.huabanimg.com/e7aed7a6b8cb9f561d212176fd2094742e006938124ca-1lFwAm_fw658/format/webp",
+//                    "pic${i}"
+//                )
+//            )
+//        }
+        DownLoadManager.instance.addTask(
+            DownloadTask(
+                "https://hbimg.huabanimg.com/e7aed7a6b8cb9f561d212176fd2094742e006938124ca-1lFwAm_fw658/format/webp",
+                "picProgress"
             )
+        ) {
+            bearLog("task<picProgress> progress is $it")
         }
     }
 
@@ -91,6 +100,10 @@ class PayViewModel(private val payRepository: PayRepository) : ViewModel() {
             Thread({ TrainTicket().sell() }, "thread_$i").start()
 
         }
+    }
+
+    fun kotOperation() {
+        KotOperation().main()
     }
 
 }

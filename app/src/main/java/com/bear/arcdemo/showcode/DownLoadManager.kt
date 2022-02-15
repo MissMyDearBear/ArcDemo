@@ -46,6 +46,30 @@ class DownLoadManager private constructor() {
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.N)
+    fun addTask(task: DownloadTask, onProgress: (Int) -> Unit) {
+        //不能重复添加task
+        if (taskCache.contains(task.url)) {
+            return
+        }
+        executorService.execute {
+            bearLog("thread#<${Thread.currentThread().name}>")
+            try {
+                PictureDownload.instance.downloadWithProgress(
+                    task.url,
+                    task.name,
+                    MyApplication.myApplication!!.applicationContext,
+                    onProgress
+                )
+            } catch (e: Exception) {
+                print(e)
+            } finally {
+                taskCache.remove(task.url)
+            }
+
+        }
+    }
+
 
     companion object {
         val instance: DownLoadManager by lazy(LazyThreadSafetyMode.SYNCHRONIZED) {

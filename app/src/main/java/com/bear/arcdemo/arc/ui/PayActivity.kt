@@ -40,6 +40,7 @@ class PayActivity : AppCompatActivity() {
             }
 //            viewModel.fraction()
 //            viewModel.buyTicket()
+//            viewModel.kotOperation()
         }
 
     }
