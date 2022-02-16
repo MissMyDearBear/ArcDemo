@@ -73,22 +73,22 @@ class PayViewModel(private val payRepository: PayRepository) : ViewModel() {
 
     @RequiresApi(Build.VERSION_CODES.N)
     fun download() {
-//        for (i in 0..15) {
-//            DownLoadManager.instance.addTask(
-//                DownloadTask(
-//                    "https://hbimg.huabanimg.com/e7aed7a6b8cb9f561d212176fd2094742e006938124ca-1lFwAm_fw658/format/webp",
-//                    "pic${i}"
-//                )
-//            )
-//        }
-        DownLoadManager.instance.addTask(
-            DownloadTask(
-                "https://hbimg.huabanimg.com/e7aed7a6b8cb9f561d212176fd2094742e006938124ca-1lFwAm_fw658/format/webp",
-                "picProgress"
+        for (i in 0..15) {
+            DownLoadManager.instance.addTask(
+                DownloadTask(
+                    "https://hbimg.huabanimg.com/e7aed7a6b8cb9f561d212176fd2094742e006938124ca-1lFwAm_fw658/format/webp",
+                    "pic${i}"
+                )
             )
-        ) {
-            bearLog("task<picProgress> progress is $it")
         }
+//        DownLoadManager.instance.addTask(
+//            DownloadTask(
+//                "https://hbimg.huabanimg.com/e7aed7a6b8cb9f561d212176fd2094742e006938124ca-1lFwAm_fw658/format/webp",
+//                "picProgress"
+//            )
+//        ) {
+//            bearLog("task<picProgress> progress is $it")
+//        }
     }
 
     fun fraction() {

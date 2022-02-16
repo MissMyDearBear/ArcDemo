@@ -2,21 +2,19 @@ package com.bear.arcdemo.showcode
 
 import android.os.Build
 import androidx.annotation.RequiresApi
-import com.bear.arcdemo.BuildConfig
 import com.bear.arcdemo.arc.ui.MyApplication
 import com.bear.arcdemo.bearLog
-import java.util.*
 import java.util.concurrent.*
-import java.util.concurrent.atomic.AtomicInteger
-import kotlin.concurrent.thread
+import kotlin.math.min
 
 class DownLoadManager private constructor() {
-
+    private val cpuCount = Runtime.getRuntime().availableProcessors()
+    private val coreCount = 2.coerceAtLeast(min(cpuCount - 1, 4))
 
     private val executorService: ExecutorService = ThreadPoolExecutor(
-        BuildConfig.DOWNLOAD_MAX_COUNT, Integer.MAX_VALUE,
+        coreCount, coreCount * 2,
         60L, TimeUnit.SECONDS,
-        SynchronousQueue<Runnable>()
+        SynchronousQueue<Runnable>(),
     )
 
 
@@ -38,7 +36,7 @@ class DownLoadManager private constructor() {
                     MyApplication.myApplication!!.applicationContext
                 )
             } catch (e: Exception) {
-
+                bearLog(e.toString())
             } finally {
                 taskCache.remove(task.url)
             }
