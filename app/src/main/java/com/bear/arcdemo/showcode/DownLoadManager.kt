@@ -14,7 +14,7 @@ class DownLoadManager private constructor() {
     private val executorService: ExecutorService = ThreadPoolExecutor(
         coreCount, coreCount * 2,
         60L, TimeUnit.SECONDS,
-        SynchronousQueue<Runnable>(),
+        LinkedBlockingQueue(),
     )
 
 
