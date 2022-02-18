@@ -1,5 +1,10 @@
 package com.bear.arcdemo.showcode
 
+/**
+ * 这样写的缺点
+ * 1. Map中含有对应存储对象的强引用
+ * 2. 采用hashMap 线程不安全
+ */
 class LruCache<T>(initCap: Int = 10) {
     private val maxSize: Int = initCap
     var count = 0
@@ -58,6 +63,10 @@ class LruCache<T>(initCap: Int = 10) {
         val pre = last?.pre
         pre?.next = tail
         tail.pre = pre
+    }
+
+    fun release() {
+
     }
 
     private fun printTreeNodes() {
