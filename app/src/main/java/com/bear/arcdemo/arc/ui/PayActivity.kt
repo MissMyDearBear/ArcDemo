@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.bear.arcdemo.R
 import com.bear.arcdemo.arc.data.bearLog
 import com.bear.arcdemo.databinding.PayActivityBinding
+import com.bear.arcdemo.ndk.NLog
 
 class PayActivity : AppCompatActivity() {
     private lateinit var binding: PayActivityBinding
@@ -35,9 +36,10 @@ class PayActivity : AppCompatActivity() {
 //            viewModel.backTrace()
 //            viewModel.subsets()
 //            viewModel.mulThread()
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                viewModel.download()
-            }
+//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+//                viewModel.download()
+//            }
+            NLog.nBearLog("bear press jni log")
 //            viewModel.fraction()
 //            viewModel.buyTicket()
 //            viewModel.kotOperation()
