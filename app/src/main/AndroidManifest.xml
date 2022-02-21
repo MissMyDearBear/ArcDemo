@@ -30,5 +30,8 @@
         <provider
             android:name=".arc.ui.MyContentProvider"
             android:authorities="bear" />
+        <service
+            android:name=".arc.service.DownloadService"
+            android:exported="false" />
     </application>
 </manifest>
