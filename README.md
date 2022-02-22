@@ -33,6 +33,7 @@
 7. 跨进程通信的方式
 8. Android的异步操作有哪些
 9. recyclerView的原理
+10. 渲染流程
 
 ### java
 1. ArrayList,LinkedList
@@ -56,6 +57,7 @@
 5. leakCanary
 6. MKKV
 7. room
+8. BlockCanary
 
 ## 数据结构与算法
 ### 数据结构
