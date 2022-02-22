@@ -15,6 +15,7 @@ import com.bear.arcdemo.R
 import com.bear.arcdemo.arc.data.bearLog
 import com.bear.arcdemo.arc.service.DownloadService
 import com.bear.arcdemo.databinding.PayActivityBinding
+import com.bear.arcdemo.source.render.FpsMonitor
 
 class PayActivity : AppCompatActivity() {
     private lateinit var binding: PayActivityBinding
@@ -48,6 +49,7 @@ class PayActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         bearLog("onCreate")
+        FpsMonitor.instance.register()
         binding = DataBindingUtil.setContentView(this, R.layout.pay_activity)
         viewModel.payResult.observe(
             this,
@@ -110,6 +112,7 @@ class PayActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         unbindService(myConnection)
+        FpsMonitor.instance.unRegister()
         super.onDestroy()
     }
 }
