@@ -383,7 +383,7 @@ int Looper::pollInner(int timeoutMillis) {
     ······
     //监听在Looper构造方法中创建的epoll实例的文件描述符的IO读写事件
     struct epoll_event eventItems[EPOLL_MAX_EVENTS];
-    //如果这些文件描述符都没有发生IO读写书剑，那么当前线程就会进入等待状态，等待时间由timeoutMillis来指定
+    //如果这些文件描述符都没有发生IO读写事件，那么当前线程就会进入等待状态，等待时间由timeoutMillis来指定
     int eventCount = epoll_wait(mEpollFd, eventItems, EPOLL_MAX_EVENTS, timeoutMillis);
 
     ······
@@ -626,6 +626,10 @@ public static void main(String[] args) {
 }
 
 ```
+
+5. Thread是怎么做到线程隔离的，thread拥有各自的loop
+
+Loop中有个ThreadLocal成员变量，他是每个Thread各自的一个私有的Map变量，在Loop prepare的时候将新建的looper存储在Thread副本中，保证了每个线程都有了独立的Loop。
 
 本文会持续更新，欢迎各位同学拍砖。
 
