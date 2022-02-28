@@ -11,7 +11,7 @@ sendMessage，而是 msg.setAsynchronous(true) ，提高了 UI 的响应速率�
 1. CALLBACK_INPUT，输入事件
 2. CALLBACK_ANIMATION，动画处理
 3. CALLBACK_TRAVERSAL，UI 分发
-4. CALLBACK_COMMIT
+4. CALLBACK_COMMIT 同步
 
 Choreographer 会将所有的回调按类型分类，用链表来组织，表头存在一个大小固定的数组中（因为只支持这四种回调）。在 VSync
 发送到主线程的消息中，就会一条链表一条链表的取出顺序执行并清空。 而在 scheduleTraversals 注册的就是 CALLBACK_TRAVERSAL 类型的 callback，这个
