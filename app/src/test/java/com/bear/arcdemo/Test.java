@@ -2,7 +2,17 @@ package com.bear.arcdemo;
 
 import com.bear.arcdemo.showcode.LruCache;
 
+import org.reactivestreams.Publisher;
+import org.reactivestreams.Subscriber;
+
+import java.util.Locale;
 import java.util.regex.Pattern;
+
+import io.reactivex.rxjava3.core.Flowable;
+import io.reactivex.rxjava3.core.Scheduler;
+import io.reactivex.rxjava3.functions.Consumer;
+import io.reactivex.rxjava3.functions.Function;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class Test {
 
@@ -80,6 +90,37 @@ public class Test {
             }
         }
         return true;
+    }
+
+    @org.junit.Test
+    public void testRxJava() {
+//        Flowable.just("Alen", "Bear").map(new Function<String, String>() {
+//            @Override
+//            public String apply(String s) throws Throwable {
+//                String low = s.toLowerCase(Locale.ROOT);
+//                System.out.print("first map >>>>>>> " + low + "\n");
+//                return s.toLowerCase(Locale.ROOT);
+//            }
+//        }).subscribe(new Consumer<String>() {
+//            @Override
+//            public void accept(String s) throws Throwable {
+//
+//            }
+//        });
+
+        Flowable.just("Alen", "Bear").flatMap(new Function<String, Publisher<String>>() {
+            @Override
+            public Publisher<String> apply(String s) throws Throwable {
+                System.out.print("do flatmap  >>>>>>> " + s + "\n");
+                return Flowable.fromArray(s+",");
+            }
+        }).subscribe(new Consumer<String>() {
+            @Override
+            public void accept(String s) throws Throwable {
+                System.out.print("map next >>>>>>> " + s + "\n");
+            }
+        });
+
     }
 
 

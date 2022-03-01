@@ -1,10 +1,7 @@
 package com.bear.arcdemo
 
 import com.bear.arcdemo.kot.KCoroutine
-import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.*
 import org.junit.Assert.assertEquals
 import org.junit.Test
 import java.util.*
@@ -43,6 +40,25 @@ class ExampleUnitTest {
         }
 
         println("Coroutine scope is over") // 这一行在内嵌 launch 执行完毕后才输出
+    }
+
+    @Test
+    fun testSum() = runBlocking {
+        val one = async { actionOne() }
+        val two = async { actionTwo() }
+        print("result = ${one.await() + two.await()} \n")
+    }
+
+    suspend fun actionOne(): Int {
+        delay(1000)
+        print("first job start\n")
+        return 13
+    }
+
+    suspend fun actionTwo(): Int {
+        delay(1000)
+        print("second job start\n")
+        return 29
     }
 
 }
