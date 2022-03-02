@@ -1,7 +1,7 @@
 package com.bear.arcdemo.algorithm.sort
 
 class BubbleSort : Sort {
-    override fun sort(array: Array<Int>): Array<Int> {
+    override fun sort(array: IntArray): IntArray {
         if (array.isEmpty()) {
             return array
         }

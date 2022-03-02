@@ -1,5 +1,5 @@
 package com.bear.arcdemo.algorithm.sort
 
 interface Sort {
-    fun sort(array: Array<Int>): Array<Int>
+    fun sort(array: IntArray): IntArray
 }

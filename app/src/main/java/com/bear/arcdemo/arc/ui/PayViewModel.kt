@@ -10,6 +10,7 @@ import com.bear.arcdemo.algorithm.method.Fraction
 import com.bear.arcdemo.algorithm.sort.QuickSort
 import com.bear.arcdemo.algorithm.sort.Sort
 import com.bear.arcdemo.algorithm.sort.SortDynamicProxy
+import com.bear.arcdemo.algorithm.sort.java.QuickSortJava
 import com.bear.arcdemo.arc.data.PayRepository
 import com.bear.arcdemo.arc.data.Result
 import com.bear.arcdemo.arc.data.bearLog
@@ -37,9 +38,9 @@ class PayViewModel(private val payRepository: PayRepository) : ViewModel() {
 
     }
 
-    fun sort(array: Array<Int>): Array<Int> {
+    fun sort(array: IntArray): IntArray {
 //        val sort = SortDynamicProxy(BubbleSort()).newProxyInstance() as Sort
-        val sort = SortDynamicProxy(QuickSort()).newProxyInstance() as Sort
+        val sort = SortDynamicProxy(QuickSortJava()).newProxyInstance() as Sort
         return sort.sort(array)
     }
 

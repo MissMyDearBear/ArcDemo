@@ -49,7 +49,7 @@ class PayActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         bearLog("onCreate")
-        FpsMonitor.instance.register()
+//        FpsMonitor.instance.register()
         binding = DataBindingUtil.setContentView(this, R.layout.pay_activity)
         viewModel.payResult.observe(
             this,
@@ -60,19 +60,19 @@ class PayActivity : AppCompatActivity() {
         binding.mBtn.text = "Action"
         val mainThread = Thread.currentThread();
         binding.mBtn.setOnClickListener {
-//            val array = arrayOf<Int>(1,4,7,90,2,34,55,664,2,34,5,67)
-//            val result=viewModel.sort(array)
-//            bearLog(result.toString())
+            val array = intArrayOf(1,4,7,90,2,34,55,664,2,34,5,67)
+            val result=viewModel.sort(array)
+            bearLog(result.toString())
 //            viewModel.backTrace()
 //            viewModel.subsets()
 //            viewModel.mulThread()
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-//                viewModel.download()
-                Intent(this, DownloadService::class.java).let {
-                    startService(it)
-                    bindService(it, myConnection, Context.BIND_AUTO_CREATE)
-                }
-            }
+//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+////                viewModel.download()
+//                Intent(this, DownloadService::class.java).let {
+//                    startService(it)
+//                    bindService(it, myConnection, Context.BIND_AUTO_CREATE)
+//                }
+//            }
 //            NLog.nBearLog("bear press jni log")
 //            viewModel.fraction()
 //            viewModel.buyTicket()
