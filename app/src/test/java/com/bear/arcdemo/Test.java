@@ -5,6 +5,8 @@ import com.bear.arcdemo.showcode.LruCache;
 import org.reactivestreams.Publisher;
 import org.reactivestreams.Subscriber;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 import java.util.regex.Pattern;
 
@@ -112,7 +114,7 @@ public class Test {
             @Override
             public Publisher<String> apply(String s) throws Throwable {
                 System.out.print("do flatmap  >>>>>>> " + s + "\n");
-                return Flowable.fromArray(s+",");
+                return Flowable.fromArray(s + ",");
             }
         }).subscribe(new Consumer<String>() {
             @Override
@@ -122,6 +124,20 @@ public class Test {
         });
 
     }
+
+
+//    private int findIndex(int[] a, int target) {
+//        ///123456  7
+//        List<List<Integer>> ret = new ArrayList<>();
+//        for (int i = 0; i < a.length - 1; i++) {
+//            for (int j = i + 1; j < a.length; j++) {
+//                if (a[i] + a[j] == target) {
+//                    System.out.print("(" + i + "," + j + ")");
+//                }
+//            }
+//        }
+//
+//    }
 
 
 }
