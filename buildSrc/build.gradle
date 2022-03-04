@@ -1,0 +1,15 @@
+plugins {
+    id 'groovy'
+}
+dependencies {
+    implementation(localGroovy())
+    implementation(gradleApi())
+    implementation("com.android.tools.build:gradle:7.0.4")
+    implementation group: 'commons-io', name: 'commons-io', version: '2.6'
+}
+repositories {
+    google()
+    mavenCentral()
+    maven { url "https://oss.jfrog.org/libs-snapshot" }
+
+}
