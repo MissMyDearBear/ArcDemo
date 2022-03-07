@@ -111,7 +111,7 @@ class PayActivity : AppCompatActivity() {
     }
 
     override fun onDestroy() {
-        unbindService(myConnection)
+//        unbindService(myConnection)
         FpsMonitor.instance.unRegister()
         super.onDestroy()
     }
