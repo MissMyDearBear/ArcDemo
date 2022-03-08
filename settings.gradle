@@ -8,5 +8,4 @@ dependencyResolutionManagement {
 }
 rootProject.name = "ArcDemo"
 include ':app'
-include ':processors'
-include ':annotations'
+include ':processor'

@@ -1,12 +1,12 @@
-package com.bear.annotations;
+package com.bear.processor;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-@Target(ElementType.TYPE)
-@Retention(RetentionPolicy.CLASS)
-public @interface CustomAnnotation {
-    String value();
+@Target(ElementType.FIELD)
+@Retention(RetentionPolicy.SOURCE)
+public @interface InjectView {
+    int value();
 }
