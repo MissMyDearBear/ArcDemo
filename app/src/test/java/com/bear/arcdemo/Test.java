@@ -125,19 +125,23 @@ public class Test {
 
     }
 
+    @org.junit.Test
+    public void testJump(){
+        int[]nums = new int[]{3,2,1,0,4};
+        boolean ret = canJump(nums);
+        System.out.print("ret >>>>>>> " + ret + "\n");
+    }
 
-//    private int findIndex(int[] a, int target) {
-//        ///123456  7
-//        List<List<Integer>> ret = new ArrayList<>();
-//        for (int i = 0; i < a.length - 1; i++) {
-//            for (int j = i + 1; j < a.length; j++) {
-//                if (a[i] + a[j] == target) {
-//                    System.out.print("(" + i + "," + j + ")");
-//                }
-//            }
-//        }
-//
-//    }
+    public boolean canJump(int[] nums) {
+        int n = nums.length;
+        int maxIndex = 0;
+        for(int i = 0;i<n;i++){
+            if(maxIndex >= i){
+                maxIndex = i+nums[i];
+            }
+        }
+        return maxIndex >= n-1;
+    }
 
 
 }
