@@ -16,14 +16,18 @@ import com.bear.arcdemo.arc.data.bearLog
 import com.bear.arcdemo.arc.service.DownloadService
 import com.bear.arcdemo.databinding.PayActivityBinding
 import com.bear.arcdemo.source.render.FpsMonitor
+import com.bear.processor.ClassAnnotation
+import com.bear.processor.PrintFiled
 
+@ClassAnnotation
 class PayActivity : AppCompatActivity() {
+    @PrintFiled
     private lateinit var binding: PayActivityBinding
 
     private val viewModel by lazy {
         ViewModelProvider(this, PayViewModelFactory())[PayViewModel::class.java]
     }
-
+    @PrintFiled
     private val myConnection = object : ServiceConnection {
         override fun onServiceConnected(
             name: ComponentName?,

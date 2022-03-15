@@ -6,8 +6,10 @@ import org.reactivestreams.Publisher;
 import org.reactivestreams.Subscriber;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.regex.Pattern;
 
 import io.reactivex.rxjava3.core.Flowable;
@@ -141,6 +143,22 @@ public class Test {
             }
         }
         return maxIndex >= n-1;
+    }
+    public char firstUniqChar(String s) {
+        int n = s.length();
+        if(n == 0){
+            return ' ';
+        }
+        Map<Character,Integer> map = new HashMap<>();
+        for(int i=0;i<n;i++){
+            map.put(s.charAt(i),map.getOrDefault(s.charAt(i),0)+1);
+        }
+        for(int i=0;i<n;i++){
+            if(map.get(s.charAt(i)) == 1){
+                return s.charAt(i);
+            }
+        }
+        return ' ';
     }
 
 

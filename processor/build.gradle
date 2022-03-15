@@ -6,3 +6,16 @@ java {
     sourceCompatibility = JavaVersion.VERSION_1_7
     targetCompatibility = JavaVersion.VERSION_1_7
 }
+
+def autoServiceVersion = '1.0-rc6'
+def javaPoetVersion = '1.13.0'
+
+dependencies {
+    // https://mvnrepository.com/artifact/com.google.auto.service/auto-service
+    implementation group: 'com.google.auto.service', name: 'auto-service', version: autoServiceVersion
+    annotationProcessor group: 'com.google.auto.service', name: 'auto-service', version: autoServiceVersion
+    // https://mvnrepository.com/artifact/com.squareup/javapoet
+    implementation group: 'com.squareup', name: 'javapoet', version: javaPoetVersion
+
+
+}
