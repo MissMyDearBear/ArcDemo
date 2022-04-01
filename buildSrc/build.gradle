@@ -1,15 +1,29 @@
 plugins {
     id 'groovy'
+    id "org.jetbrains.kotlin.jvm" version "1.6.10"
 }
 dependencies {
     implementation(localGroovy())
     implementation(gradleApi())
     implementation("com.android.tools.build:gradle:7.0.4")
     implementation group: 'commons-io', name: 'commons-io', version: '2.6'
+    // https://mvnrepository.com/artifact/com.google.auto.service/auto-service
+    implementation group: 'com.google.auto.service', name: 'auto-service', version: '1.0'
+    implementation 'org.javassist:javassist:3.27.0-GA'
+    implementation 'org.ow2.asm:asm:9.2'
+    implementation 'org.ow2.asm:asm-tree:9.2'
+    // https://mvnrepository.com/artifact/org.jetbrains.kotlin/kotlin-stdlib
+    implementation group: 'org.jetbrains.kotlin', name: 'kotlin-stdlib', version: '1.6.20-RC2'
+    implementation("org.ow2.asm:asm-util:7.0")
+
 }
+
 repositories {
     google()
     mavenCentral()
-    maven { url "https://oss.jfrog.org/libs-snapshot" }
+//    maven { url "https://oss.jfrog.org/libs-snapshot"}
+    maven { url "https://maven.aliyun.com/repository/gradle-plugin/"}
 
 }
+
+apply plugin: "org.jetbrains.kotlin.jvm"

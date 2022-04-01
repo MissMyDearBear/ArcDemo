@@ -4,6 +4,7 @@ plugins {
 
 }
 apply plugin: ReportPlugin
+apply plugin: LifecyclePlugin
 
 
 android {
