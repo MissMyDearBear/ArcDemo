@@ -15,7 +15,7 @@ public class QuickSortJava implements Sort {
 
     private void sort(int[] a, int l, int r) {
         if (l > r) {
-            return;
+            return; 
         }
         int start = l;
         int end = r;

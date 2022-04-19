@@ -27,6 +27,7 @@ class PayActivity : AppCompatActivity() {
     private val viewModel by lazy {
         ViewModelProvider(this, PayViewModelFactory())[PayViewModel::class.java]
     }
+
     @PrintFiled
     private val myConnection = object : ServiceConnection {
         override fun onServiceConnected(
@@ -64,9 +65,9 @@ class PayActivity : AppCompatActivity() {
         binding.mBtn.text = "Action"
         val mainThread = Thread.currentThread();
         binding.mBtn.setOnClickListener {
-            val array = intArrayOf(1,4,7,90,2,34,55,664,2,34,5,67)
-            val result=viewModel.sort(array)
-            bearLog(result.toString())
+//            val array = intArrayOf(1,4,7,90,2,34,55,664,2,34,5,67)
+//            val result=viewModel.sort(array)
+//            bearLog(result.toString())
 //            viewModel.backTrace()
 //            viewModel.subsets()
 //            viewModel.mulThread()
@@ -81,6 +82,7 @@ class PayActivity : AppCompatActivity() {
 //            viewModel.fraction()
 //            viewModel.buyTicket()
 //            viewModel.kotOperation()
+            viewModel.searchTarget()
         }
 
     }

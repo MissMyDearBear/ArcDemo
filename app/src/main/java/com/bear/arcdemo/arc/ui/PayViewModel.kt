@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.bear.arcdemo.algorithm.method.BackTrack
+import com.bear.arcdemo.algorithm.method.BinarySearch
 import com.bear.arcdemo.algorithm.method.Fraction
 import com.bear.arcdemo.algorithm.sort.QuickSort
 import com.bear.arcdemo.algorithm.sort.Sort
@@ -105,6 +106,13 @@ class PayViewModel(private val payRepository: PayRepository) : ViewModel() {
 
     fun kotOperation() {
         KotOperation().main()
+    }
+
+    fun searchTarget(){
+        val nums :IntArray = intArrayOf(0,7,2,4,5,6,1,10)
+        val target = 1
+        val isExit = BinarySearch().binarySearch(nums,1)
+        bearLog("num $target is exit? = $isExit!!")
     }
 
 }
