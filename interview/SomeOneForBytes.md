@@ -1,7 +1,7 @@
 ### 字节跳动
 
 #### 一面：
-- linkhashmap如何保证有序性，顺序是怎样决定的？
+- linkHashmap如何保证有序性，顺序是怎样决定的？
 - hashmap实现原理
 - 如何实现一个线程安全的hashmap
 - 对java泛型的理解，泛型有什么限制吗，为什么要设计泛型编译擦除？
@@ -16,9 +16,9 @@
 
 #### 二面:
 项目
-- view windows activty的关系
+- view windows activity的关系
 - view是怎么被绘制显示到屏幕上的
-- sufaceview和textrueview的区别
+- surfaceView和textureView的区别
 - 场景设计:设计一个配置下发系统
 
 #### 三面：
