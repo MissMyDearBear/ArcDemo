@@ -9,35 +9,38 @@ public class QuickSortJava implements Sort {
     @NonNull
     @Override
     public int[] sort(@NonNull int[] array) {
+        if(array.length == 0 || array.length ==1){
+            return array;
+        }
         sort(array, 0, array.length - 1);
         return array;
     }
 
-    private void sort(int[] a, int l, int r) {
-        if (l > r) {
-            return; 
+    private void sort(int[] a, int start, int end) {
+        if (start >= end) {
+            return;
         }
-        int start = l;
-        int end = r;
-        int p = (l + r) / 2;
-        while (l <= r) {
+        int left = start;
+        int right = end;
+        int p = a[(start + end) / 2];
+        while (left <= right) {
 
-            while (l <= r && a[l] < a[p]) {
-                l++;
+            while (left <= right && a[left] < p) {
+                left++;
             }
 
-            while (l <= r && a[r] > a[p]) {
-                r--;
+            while (left <= right && a[right] > p) {
+                right--;
             }
 
-            if (l <= r) {
-                swap(a, l, r);
-                l++;
-                r--;
+            if (left <= right) {
+                swap(a, left, right);
+                left++;
+                right--;
             }
         }
-        sort(a, start, r);
-        sort(a, l, end);
+        sort(a, start, right);
+        sort(a, left, end);
     }
 
 

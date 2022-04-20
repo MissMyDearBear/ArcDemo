@@ -1,11 +1,13 @@
 package com.bear.arcdemo;
 
+import com.bear.arcdemo.algorithm.sort.java.QuickSortJava;
 import com.bear.arcdemo.showcode.LruCache;
 
 import org.reactivestreams.Publisher;
 import org.reactivestreams.Subscriber;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -128,8 +130,8 @@ public class Test {
     }
 
     @org.junit.Test
-    public void testJump(){
-        int[]nums = new int[]{3,2,1,0,4};
+    public void testJump() {
+        int[] nums = new int[]{3, 2, 1, 0, 4};
         boolean ret = canJump(nums);
         System.out.print("ret >>>>>>> " + ret + "\n");
     }
@@ -137,28 +139,72 @@ public class Test {
     public boolean canJump(int[] nums) {
         int n = nums.length;
         int maxIndex = 0;
-        for(int i = 0;i<n;i++){
-            if(maxIndex >= i){
-                maxIndex = i+nums[i];
+        for (int i = 0; i < n; i++) {
+            if (maxIndex >= i) {
+                maxIndex = i + nums[i];
             }
         }
-        return maxIndex >= n-1;
+        return maxIndex >= n - 1;
     }
+
     public char firstUniqChar(String s) {
         int n = s.length();
-        if(n == 0){
+        if (n == 0) {
             return ' ';
         }
-        Map<Character,Integer> map = new HashMap<>();
-        for(int i=0;i<n;i++){
-            map.put(s.charAt(i),map.getOrDefault(s.charAt(i),0)+1);
+        Map<Character, Integer> map = new HashMap<>();
+        for (int i = 0; i < n; i++) {
+            map.put(s.charAt(i), map.getOrDefault(s.charAt(i), 0) + 1);
         }
-        for(int i=0;i<n;i++){
-            if(map.get(s.charAt(i)) == 1){
+        for (int i = 0; i < n; i++) {
+            if (map.get(s.charAt(i)) == 1) {
                 return s.charAt(i);
             }
         }
         return ' ';
+    }
+
+    @org.junit.Test
+    public void testSort() {
+        int nums[] = {0, 22, 1, 1, 5, 6, 3, 56, 7, 3, 0};
+        sort(nums, 0, nums.length - 1);
+        StringBuilder sb = new StringBuilder();
+        for (int i : nums) {
+            sb.append(i).append(" ");
+
+        }
+        System.out.println(sb.toString());
+    }
+
+    public void sort(int[] nums, int start, int end) {
+        if (start >= end) {
+            return;
+        }
+        int left = start;
+        int right = end;
+        int p = nums[(start + right) / 2];
+        while (left <= right) {
+            while (left <= right && nums[left] < p) {
+                left++;
+            }
+            while (left <= right && nums[right] > p) {
+                right--;
+            }
+            if (left <= right) {
+                swap(nums, left, right);
+                left++;
+                right--;
+            }
+        }
+        sort(nums, start, right);
+        sort(nums, left, end);
+
+    }
+
+    private void swap(int[] nums, int a, int b) {
+        int tem = nums[a];
+        nums[a] = nums[b];
+        nums[b] = tem;
     }
 
 
