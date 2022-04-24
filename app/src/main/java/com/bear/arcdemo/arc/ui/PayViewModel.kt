@@ -1,7 +1,12 @@
 package com.bear.arcdemo.arc.ui
 
+import android.app.Activity
+import android.content.Context
+import android.content.pm.PackageManager
 import android.os.Build
 import androidx.annotation.RequiresApi
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -16,6 +21,7 @@ import com.bear.arcdemo.arc.data.PayRepository
 import com.bear.arcdemo.arc.data.Result
 import com.bear.arcdemo.arc.data.bearLog
 import com.bear.arcdemo.arc.data.model.PayInfo
+import com.bear.arcdemo.arc.service.CalendarReminderUtils
 import com.bear.arcdemo.kot.KotOperation
 import com.bear.arcdemo.showcode.*
 import com.bear.arcdemo.source.multhread.ThreadAwait
@@ -108,11 +114,38 @@ class PayViewModel(private val payRepository: PayRepository) : ViewModel() {
         KotOperation().main()
     }
 
-    fun searchTarget(){
-        val nums :IntArray = intArrayOf(0,7,2,4,5,6,1,10)
+    fun searchTarget() {
+        val nums: IntArray = intArrayOf(0, 7, 2, 4, 5, 6, 1, 10)
         val target = 1
-        val isExit = BinarySearch().binarySearch(nums,1)
+        val isExit = BinarySearch().binarySearch(nums, 1)
         bearLog("num $target is exit? = $isExit!!")
+    }
+
+    fun addCalendarEvent(context: Context) {
+        if (ContextCompat.checkSelfPermission(
+                context,
+                "android.permission.READ_CALENDAR"
+            ) != PackageManager.PERMISSION_GRANTED ||
+            ContextCompat.checkSelfPermission(
+                context,
+                "android.permission.WRITE_CALENDAR"
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+
+            ActivityCompat.requestPermissions(
+                context as Activity,
+                arrayOf("android.permission.READ_CALENDAR", "android.permission.WRITE_CALENDAR"),
+                1
+            )
+            return
+        }
+        CalendarReminderUtils().addCalendarEvent(
+            context,
+            "Nic birthday",
+            "hani",
+            System.currentTimeMillis() + 30000,
+            0
+        )
     }
 
 }

@@ -84,6 +84,9 @@ class PayActivity : AppCompatActivity() {
 //            viewModel.kotOperation()
             viewModel.searchTarget()
         }
+        binding.btnAdd.setOnClickListener {
+            viewModel.addCalendarEvent(this)
+        }
 
     }
 
@@ -110,6 +113,17 @@ class PayActivity : AppCompatActivity() {
         super.onWindowFocusChanged(hasFocus)
         bearLog("onWindowFocusChanged")
         doSomething()
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == 1) {
+            viewModel.addCalendarEvent(this)
+        }
     }
 
     override fun onStop() {
