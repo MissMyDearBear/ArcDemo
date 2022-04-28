@@ -144,7 +144,13 @@ class PayViewModel(private val payRepository: PayRepository) : ViewModel() {
             "Nic birthday",
             "hani",
             System.currentTimeMillis() + 30000,
-            0
+        )
+    }
+
+    fun deleteCalendar(context: Context) {
+        CalendarReminderUtils().deleteCalendarEvent(
+            context,
+            "Nic birthday",
         )
     }
 

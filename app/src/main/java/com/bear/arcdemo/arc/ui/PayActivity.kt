@@ -88,6 +88,10 @@ class PayActivity : AppCompatActivity() {
             viewModel.addCalendarEvent(this)
         }
 
+        binding.btnDelete.setOnClickListener {
+            viewModel.deleteCalendar(this)
+        }
+
     }
 
     private fun doSomething() {
@@ -122,7 +126,16 @@ class PayActivity : AppCompatActivity() {
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == 1) {
-            viewModel.addCalendarEvent(this)
+            var isOk = true
+            for (i in grantResults) {
+                if (i == -1) {
+                    isOk = false
+                    break
+                }
+            }
+            if (isOk) {
+                viewModel.addCalendarEvent(this)
+            }
         }
     }
 

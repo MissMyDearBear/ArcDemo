@@ -96,7 +96,6 @@ class CalendarReminderUtils {
         title: String,
         description: String,
         reminderTime: Long,
-        previousDate: Int
     ) {
         if (context == null) {
             return
@@ -138,7 +137,7 @@ class CalendarReminderUtils {
         //事件提醒的设定
         val values = ContentValues()
         values.put(CalendarContract.Reminders.EVENT_ID, ContentUris.parseId(newEvent))
-        values.put(CalendarContract.Reminders.MINUTES, previousDate * 24 * 60) // 提前previousDate天有提醒
+        values.put(CalendarContract.Reminders.MINUTES, 5) // 提前previousDate天有提醒
 
         values.put(CalendarContract.Reminders.METHOD, CalendarContract.Reminders.METHOD_ALERT)
         val uri =
